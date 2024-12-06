@@ -1,0 +1,568 @@
+/***  FONTS ***/
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap");
+
+/***  VARIABLES & THEMES ***/
+
+:root {
+  --primary-color: #cf0f0f;
+  --primary-color-contrast: #ffffff;
+  --field-background-color: #000;
+}
+
+.light-theme {
+  --page-background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #ffffff 65%,
+    rgba(255, 255, 255, 0.75) 100%
+  );
+  --header-background-color: #e3e3e3;
+  --highlight-color: #000000;
+  --featured-font-family: "Archivo", sans-serif;
+  --character-top-image-src: url("../images/characters/kids-on-the-bike.svg");
+  --character-top-image-color: #ffffff;
+  --character-bottom-image-src: url("../images/characters/inverted-world-monster.svg");
+  --character-bottom-image-color: #e5e5e5;
+  --background-lamp-image: url("../images/backgrounds/lamps.png");
+  --footer-background-color: #b5bbbf;
+}
+
+.dark-theme {
+  --page-background: linear-gradient(
+    180deg,
+    #050000 0%,
+    #130404 65%,
+    rgba(19, 1, 1, 0.75) 100%
+  );
+  --header-background-color: #220f0f;
+  --highlight-color: #ffffff;
+  --featured-font-family: "Rubik Glitch", sans-serif;
+  --character-bottom-image-src: url("../images/characters/kids-on-the-bike.svg");
+  --character-bottom-image-color: rgb(61, 61, 61);
+  --character-top-image-src: url("../images/characters/inverted-world-monster.svg");
+  --character-top-image-color: rgb(63, 63, 63);
+  --background-lamp-image: url("../images/backgrounds/lamps-inverted.png");
+  --footer-background-color: #000;
+}
+
+.dark-theme button,
+.dark-theme h1,
+.dark-theme h2,
+.dark-theme h3{
+  letter-spacing: 5px;
+  font-weight: normal;
+}
+
+.dark-theme .invert-element{
+  transform: rotateZ(180deg) scaleX(-1);
+}
+/*** GENERIC STYLES ***/
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: 1s;
+  list-style: none;
+}
+
+h1, h2, h3{
+  font-family: var(--featured-font-family);
+  font-size: 3rem;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+p{
+  color: var(--highlight-color);
+}
+
+p, input, textarea, label{
+  font-family: "Libre Baskerville", serif;
+}
+
+button{
+  padding: 16px 32px;
+  background-color: transparent;
+  font-weight: 900;
+  font-family: var(--featured-font-family);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 1s;
+}
+
+input, textarea{
+  border: 2px solid var(--primary-color-contrast);
+  background-color: var(--field-background-color);
+  color: var(--primary-color-contrast);
+  padding: 8px;
+  margin-bottom: 24px;
+  font-size: 1rem;
+}
+
+input:focus-visible,
+textarea:focus-visible{
+  outline: none;
+  border-color: black;
+}
+
+label{
+  margin-trim: 8px;
+}
+
+/* HEADER */
+header{
+  background-color: var(--header-background-color);
+  min-height: 850px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+header::before{
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+  background-image: url("../images/banner/florest.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 90%;
+  filter: saturate(0);
+  opacity: 0.2;
+}
+
+.header-content{
+  max-width: 700px;
+  padding: 80px 20px;
+  text-align: center;
+  z-index: 2;
+}
+
+.header-content img{
+  width: 80%;
+}
+
+.header-content p{
+  margin: 30px 0 50px;
+}
+
+.header-content button{
+  border: 3px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.header-content button:hover{
+  background-color: var(--primary-color);
+  color: var(--primary-color-contrast);
+}
+
+/*** WORLDS CHARACTERS ***/
+
+.world-characters{
+  width: 100%;
+  max-width: 900px;
+  position: absolute;
+}
+
+#top-characters{
+  height: 100%;
+  background-color: var(--character-top-image-color);
+  
+  /* Com o mask é possível trocar a cor da imagem svg */
+  mask: var(--character-top-image-src) bottom / contain no-repeat;
+  -webkit-mask: var(--character-top-image-src) bottom / contain no-repeat;
+}
+
+#bottom-characters{
+  height: 500px;
+  background-color: var(--character-bottom-image-color);
+  position: relative;
+  transform: rotateZ(180deg) scaleX(-1);
+  mask: var(--character-bottom-image-src) bottom / contain no-repeat;
+  -webkit-mask: var(--character-bottom-image-src) bottom / contain no-repeat;
+}
+
+/*** MAIN ***/
+main{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main::before{
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: var(--page-background) no-repeat, url("../images/backgrounds//florest.png") no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
+
+/*** SECTIONS ***/
+section{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 95px;
+}
+
+/*** SECTION 1 ***/
+
+.container{
+  max-width: 1200px;
+  padding: 0 2%;
+}
+
+#section-inverted-world{
+  align-items: center;
+}
+
+.section-texts{
+  width: 50%;
+}
+
+.section-texts h2{
+  max-width: 300px;
+}
+
+/*** SECTION 2 ***/
+#section-stranger-things-trailer .section-texts{
+  width: 50%;
+  text-align: right;
+}
+
+.section-texts h2{
+  max-width: 425px;
+  display: inline-block;
+}
+
+.video-frame{
+  background-color: var(--primary-color);
+}
+
+.video-frame iframe{
+  position: relative;
+  bottom: 24px;
+  left: 24px;
+  border: 2px solid;
+  border-image: linear-gradient(var(--primary-color), var(--primary-color-contrast));
+  border-image-slice: 10;
+}
+
+/*** SECTION 3 ***/
+#section-stranger-things-gallery{
+  width: 100%;
+  justify-content: center;
+  background: var(--background-lamp-image) 120% / 50% no-repeat;
+}
+
+#section-stranger-things-gallery .container{
+  width: 100%;
+}
+
+#section-stranger-things-gallery .container h2{
+  width: 800px;
+}
+
+.gallery-container{
+  display: flex;
+  gap: 50px;
+  padding-left: 20px;
+}
+
+.gallery-container .gallery-image{
+  max-width: 250px;
+  max-height: 250px;
+  outline: 20px solid var(--highlight-color);
+  border: 3px solid var(--primary-color);
+  box-sizing: initial;
+}
+
+.gallery-container .gallery-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 10px solid var(--highlight-color);
+}
+
+/*** SECTION 4 ***/
+#section-form{
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  text-align: center;
+}
+
+#section-form h2{
+  width: 600px;
+}
+
+#section-form .form-content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#section-form .form-content h3{
+  color: var(--highlight-color);
+  flex-basis: 30%;
+  text-align: left;
+  margin: 0;
+}
+
+#section-form .form-content h3 span{
+  color: var(--primary-color);
+}
+
+#section-form .form-container{
+  flex-basis: 50%;
+  position: relative;
+}
+
+#section-form .form-container::after{
+  content: "";
+  background-color: var(--highlight-color);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: -1;
+}
+
+#section-form .form-container form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px;
+  background-color: var(--primary-color);
+  color: var(--primary-color-contrast);
+  text-align: left;
+}
+
+#section-form .form-container form button{
+  border: none;
+  background-color: var(--field-background-color);
+  color: var(--primary-color-contrast);
+  max-width: 300px;
+  align-self: center;
+}
+
+#section-form .form-container form button:hover{
+  background-color: var(--primary-color-contrast);
+  color: var(--field-background-color);
+}
+
+/*** FOOTER ***/
+footer{
+  padding: 60px 0;
+  background-color: var(--footer-background-color);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+footer p{
+  max-width: 700px;
+  margin-bottom: 24px;
+}
+
+footer::before,
+footer::after{
+  content: "";
+  width: 300px;
+  height: 200px;
+  background: url("../images/footer/tape.svg") no-repeat;
+  background-size: contain;
+  position: absolute;
+  bottom: -30px;
+}
+
+footer::before{
+  left: -50px;
+  transform: rotateZ(-10deg);
+}
+
+footer::after{
+  right: -50px;
+  transform: rotateZ(10deg);
+}
+
+@media screen and (max-width: 1024px){
+  h1, h2, h3{
+    margin-bottom: 20px;
+    font-size: 2rem;
+  }
+
+  /*** SECTION 2 ***/
+  #section-stranger-things-trailer .section-texts{
+    width: 50%;
+    text-align: right;
+    padding-left: 15px;
+  }
+  
+  .video-frame iframe{
+    width: 350px;
+    bottom: 10px;
+    left: 10px;
+  }
+
+  /*** SECTION 3 ***/
+  #section-stranger-things-gallery .container h2{
+    max-width: 800px;
+    width: auto;
+  }
+
+  .gallery-container{
+    gap: 15px;
+    padding-top: 40px;
+    padding-left: 0;
+  }
+
+  .gallery-container .gallery-image{
+    width: 200px;
+    height: 200px;
+    outline: 5px solid var(--highlight-color);
+  }
+
+  .gallery-container .gallery-image img{
+    border: 5px solid var(--highlight-color);
+  }
+
+  /*** SECTION 4 ***/
+  #section-form h2{
+    max-width: 600px;
+    width: auto;
+  }
+
+  #section-form .form-content{
+    justify-content: center;
+    gap: 20px;
+  }
+
+  /*** FOOTER ***/
+  footer p{
+    max-width: 700px;
+    margin-bottom: 24px;
+    z-index: 2;
+  }
+
+  footer::before,
+  footer::after{
+    width: 250px;
+    height: 150px;
+  }
+}
+
+@media screen and (max-width: 768px){
+  h1, h2, h3{
+    font-size: 1.7rem;
+    text-align: center;
+  }
+
+  #bottom-characters{
+    min-height: 300px;
+    height: auto;
+  }
+
+  /*** SECTIONS ***/
+  section{
+    flex-direction: column;
+  }
+
+  /*** SECTION 1 ***/
+  #section-invert-world{
+    width: 100%;
+    text-align: center;
+  }
+
+  .section-texts{
+    width: 100%;
+  }
+
+  #section-invert-world img{
+    width: 60%;
+    max-width: 300px;
+    margin-top: 20px;
+    align-self: center;
+  }
+
+  /*** SECTION 2 ***/
+  #section-stranger-things-trailer {
+    flex-direction: column-reverse;
+  }
+
+  #section-stranger-things-trailer .section-texts{
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    padding-left: 0;
+    padding-bottom: 40px;
+  }
+
+  .video-frame iframe{
+    width: 100%;
+    height: 250px;
+    bottom: 5px;
+    left: 5px;
+  }
+
+  /*** SECTION 3 ***/
+  #section-stranger-things-gallery{
+    background: none;
+  }
+  .gallery-container{
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .gallery-container .gallery-image{
+    /* max-height: 100px; */
+    padding-top: 0;
+  }
+
+  /*** SECTION 4 ***/
+  #section-form .form-content{
+    flex-direction: column;
+  }
+
+  #section-form .form-content h3{
+    text-align: center;
+  }
+
+  #section-form .form-container{
+    position: relative;
+    width: 90%;
+  }
+
+  #section-form .form-container::after{
+    top: 5px;
+    left: 5px;
+  }
+  
+  /*** FOOTER ***/
+  footer{
+    padding: 20px 0;
+  }
+
+  footer::before,
+  footer::after{
+    width: 120px;
+    height: 100px;
+  }
+
+  footer img{
+    max-width: 80px;
+  }
+}
